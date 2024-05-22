@@ -29,4 +29,3 @@ urlpatterns = [
     path('calculate-scores/<int:faculty_id>/', calculate_scores, name='calculate_scores'),  # доданий новий маршрут
 
 ]
-#gelp
