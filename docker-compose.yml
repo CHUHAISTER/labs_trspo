@@ -1,0 +1,57 @@
+version: '3.8'
+
+
+services:
+  applicant_service:
+
+    networks:
+      - my_network
+    build:
+      context: ./applicant_service
+    ports:
+      - "8001:8000"
+    volumes:
+      - shared-db:/labs
+    depends_on:
+      - faculty_service
+
+
+  faculty_service:
+    networks:
+      - my_network
+    build:
+      context: ./faculty_service
+    ports:
+      - "8002:8000"
+    volumes:
+      - shared-db:/labs
+
+  subject_service:
+    build:
+      context: ./subject_service
+    ports:
+      - "8003:8000"
+    volumes:
+      - shared-db:/labs
+
+  subject_score_service:
+    build:
+      context: ./subject_score_service
+    ports:
+      - "8004:8000"
+    volumes:
+      - shared-db:/labs
+
+  record_service:
+    build:
+      context: ./record_service
+    ports:
+      - "8005:8000"
+    volumes:
+      - shared-db:/labs
+
+networks:
+  my_network:
+
+volumes:
+  shared-db:
